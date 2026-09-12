@@ -13,9 +13,9 @@ This project processes real-world shelter data and cross-references it with stan
 * Project context and inspiration via [Animal Hack](https://animalhack.org/)
 
 ## How It Works
-1. **Filter** — Dogs are filtered by size, age, and sex preferences.
-2. **Score** — User trait sliders (energy, noise, maintenance, apartment suitability, kid-friendliness, independence, trainability, space requirement, exercise intensity) are compared against each dog's breed-derived trait vector using cosine similarity.
-3. **Rank** — Dogs are sorted by match score (0–100%) and returned to the frontend for browsing.
+1. **Filter**: Dogs are filtered by size, age, and sex preferences.
+2. **Score**: User trait sliders (energy, noise, maintenance, apartment suitability, kid-friendliness, independence, trainability, space requirement, exercise intensity) are compared against each dog's breed-derived trait vector using cosine similarity.
+3. **Rank**: Dogs are sorted by match score (0–100%) and returned to the frontend for browsing.
 
 ## Local Setup
 
