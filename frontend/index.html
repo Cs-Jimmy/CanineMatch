@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CanineMatch | Find Your Perfect Companion</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- NAVIGATION BAR -->
+  <nav class="navbar">
+    <div class="nav-brand">
+      <img src="logo.png" alt="CanineMatch Logo" class="nav-logo">
+      <span class="nav-title">CanineMatch</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#quiz">Find Match</a></li>
+      <li><a href="#how-it-works">How It Works</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO HEADER -->
+  <div class="hero">
+    <h1>CanineMatch</h1>
+    <p>Discover Your Ideal Shelter Dog with Data-Backed Compatibility Scoring.</p>
+  </div>
+
+  <div class="main-container" id="quiz">
+    <!-- MULTI-SELECT CHECKBOX & SLIDER FILTERS -->
+    <div class="filter-grid">
+      
+      <!-- SIZE FILTER -->
+      <div class="form-group">
+        <label>Preferred Size(s)</label>
+        <div class="checkbox-group">
+          <label class="checkbox-label"><input type="checkbox" id="size-all" onchange="toggleGroup('size', this)" checked> Any</label>
+          <label class="checkbox-label"><input type="checkbox" name="size" value="Small" onchange="handleItemChange('size')" checked> Small</label>
+          <label class="checkbox-label"><input type="checkbox" name="size" value="Medium" onchange="handleItemChange('size')" checked> Medium</label>
+          <label class="checkbox-label"><input type="checkbox" name="size" value="Large" onchange="handleItemChange('size')" checked> Large</label>
+        </div>
+      </div>
+
+      <!-- AGE FILTER -->
+      <div class="form-group">
+        <label>Preferred Age(s)</label>
+        <div class="checkbox-group">
+          <label class="checkbox-label"><input type="checkbox" id="age-all" onchange="toggleGroup('age', this)" checked> Any</label>
+          <label class="checkbox-label"><input type="checkbox" name="age" value="Puppy" onchange="handleItemChange('age')" checked> Puppy</label>
+          <label class="checkbox-label"><input type="checkbox" name="age" value="Adult" onchange="handleItemChange('age')" checked> Adult</label>
+          <label class="checkbox-label"><input type="checkbox" name="age" value="Senior" onchange="handleItemChange('age')" checked> Senior</label>
+        </div>
+      </div>
+
+      <!-- SEX FILTER -->
+      <div class="form-group">
+        <label>Preferred Sex</label>
+        <div class="checkbox-group">
+          <label class="checkbox-label"><input type="checkbox" id="sex-all" onchange="toggleGroup('sex', this)" checked> Any</label>
+          <label class="checkbox-label"><input type="checkbox" name="sex" value="Male" onchange="handleItemChange('sex')" checked> Male</label>
+          <label class="checkbox-label"><input type="checkbox" name="sex" value="Female" onchange="handleItemChange('sex')" checked> Female</label>
+        </div>
+      </div>
+
+      <!-- 9 BEHAVIORAL TRAIT SLIDERS -->
+      <div class="form-group">
+        <label>Energy Level</label>
+        <div class="slider-container">
+          <input type="range" id="t1" min="1" max="5" value="3" oninput="updateVal(this)">
+          <span class="slider-val">3</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Noise / Barking Level</label>
+        <div class="slider-container">
+          <input type="range" id="t2" min="1" max="5" value="2" oninput="updateVal(this)">
+          <span class="slider-val">2</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Maintenance Level</label>
+        <div class="slider-container">
+          <input type="range" id="t3" min="1" max="5" value="3" oninput="updateVal(this)">
+          <span class="slider-val">3</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Apartment Suitability</label>
+        <div class="slider-container">
+          <input type="range" id="t4" min="1" max="5" value="4" oninput="updateVal(this)">
+          <span class="slider-val">4</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Kid Friendliness</label>
+        <div class="slider-container">
+          <input type="range" id="t5" min="1" max="5" value="5" oninput="updateVal(this)">
+          <span class="slider-val">5</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Independence Level</label>
+        <div class="slider-container">
+          <input type="range" id="t6" min="1" max="5" value="2" oninput="updateVal(this)">
+          <span class="slider-val">2</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Trainability</label>
+        <div class="slider-container">
+          <input type="range" id="t7" min="1" max="5" value="4" oninput="updateVal(this)">
+          <span class="slider-val">4</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Space Requirement</label>
+        <div class="slider-container">
+          <input type="range" id="t8" min="1" max="5" value="3" oninput="updateVal(this)">
+          <span class="slider-val">3</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Exercise Intensity</label>
+        <div class="slider-container">
+          <input type="range" id="t9" min="1" max="5" value="3" oninput="updateVal(this)">
+          <span class="slider-val">3</span>
+        </div>
+      </div>
+
+      <button onclick="getMatches()" class="btn-submit">Find Matches</button>
+    </div>
+
+    <!-- MATCH RESULTS CONTAINER -->
+    <div id="results" class="results-grid"></div>
+
+    <!-- SHOW MORE BUTTON CONTAINER -->
+    <div id="load-more-container" class="load-more-container" style="display: none;">
+      <button class="btn-show-more" onclick="renderNextBatch()">Show More</button>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS SECTION -->
+  <section id="how-it-works" class="info-section">
+    <h2>How It Works</h2>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <h3>Select Preferences</h3>
+        <p>Choose physical filters like size, age, and sex preferences.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <h3>Set Trait Sliders</h3>
+        <p>Adjust 1–5 scales for energy, apartment suitability, noise tolerance, and trainability.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <h3>Cosine Matching</h3>
+        <p>FastAPI calculates vector distance between your inputs and AKC/shelter benchmarks.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">04</div>
+        <h3>Adopt Smart</h3>
+        <p>Review ranked dog cards with tailored match percentages and visit the live shelter portal.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT & DATA SECTION -->
+  <section id="about" class="info-section">
+    <div class="about-container">
+      <h2>About CanineMatch</h2>
+      <p>Many prospective dog owners adopt without understanding whether a specific breed matches their home environment, schedule, and activity level. CanineMatch uses data-backed compatibility scoring to reduce shelter surrenders and ensure long-term adoption success.</p>
+      
+      <div class="data-attribution">
+        <p>Built using real-world records from the <a href="https://www.austintexas.gov/austin-animal-center" target="_blank" rel="noopener">Austin Animal Center</a> cross-referenced with AKC behavioral benchmarks for over 270 breeds.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 CanineMatch. Adopt Smart.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
