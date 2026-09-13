@@ -1,5 +1,5 @@
 # CanineMatch
-
+![Project logo](Logo.png)
 CanineMatch is a web application that pairs prospective dog owners with shelter dogs using quantitative compatibility scoring. It filters available dogs based on physical preferences and calculates a match percentage using cosine similarity against behavioral trait profiles.
 
 ## Tech Stack
